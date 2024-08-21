@@ -1,4 +1,3 @@
-// src/components/AdminDashboard.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
@@ -6,9 +5,6 @@ import { Chart, registerables } from 'chart.js';
 import apiUrl from "../config";
 
 Chart.register(...registerables); // Register chart.js components
-
-
-
 
 const AdminDashboard = () => {
   const [userData, setUserData] = useState([]);
@@ -43,6 +39,30 @@ const AdminDashboard = () => {
     };
 
     fetchUserDetails();
+
+    // WebSocket connection
+    const socket = new WebSocket('wss://dashboard-backend-ma6s.onrender.com/ws');
+
+    socket.onopen = () => {
+      console.log('WebSocket connection established');
+    };
+
+    socket.onmessage = (event) => {
+      console.log('Received message:', event.data);
+      // Handle real-time updates here, e.g., update the chartData or userData based on the message
+    };
+
+    socket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
+
+    return () => {
+      socket.close(); // Clean up the WebSocket connection when the component unmounts
+    };
   }, []);
 
   if (!chartData) {
