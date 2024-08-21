@@ -11,7 +11,7 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${apiUrl}/admin/login`, credentials);
+      const { data } = await axios.post(`${apiUrl}/api/admin/login`, credentials);
       localStorage.setItem('adminToken', data.token); // Save the token in localStorage
       navigate('/admin/dashboard'); // Redirect to the dashboard
     } catch (err) {
