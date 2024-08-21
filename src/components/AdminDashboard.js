@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const { data } = await axios.get(`${apiUrl}/admin/users`);
+        const { data } = await axios.get(`${apiUrl}/api/admin/users`);
         setUserData(data);
 
         if (Array.isArray(data) && data.length > 0) {
