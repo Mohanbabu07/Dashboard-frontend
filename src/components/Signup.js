@@ -42,7 +42,7 @@ const Signup = () => {
     e.preventDefault();
     if (!validate()) return; // Stop submission if validation fails
     try {
-      await axios.post(`${apiUrl}/signup`, formData);
+      await axios.post(`${apiUrl}/api/signup`, formData);
       alert("Signup successful");
       navigate("/login"); // Redirect to the login page
     } catch (err) {
