@@ -14,7 +14,7 @@ const UserProfile = () => {
 
       if (token) {
         try {
-          const { data } = await axios.get(`${apiUrl}/user/profile`, {
+          const { data } = await axios.get(`${apiUrl}/api/user/profile`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUserDetails(data);
